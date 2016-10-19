@@ -1,0 +1,15 @@
+digraph {
+  overlap = false;
+  splines = true;
+  {
+    node [shape=box];
+    define_py_data_sources2 [label="define_py_data_sources2(train_list=trn,\l                                test_list=tst,\l                                module=\"dataprovider_bow\",\l                                obj=process,\l                                args={\"dictionary\": word_dict})"];
+    define_py_data_sources [label="define_py_data_sources(...,data_cls=None)"] ;
+    define_py_data_source [label="define_py_data_source(...,cls=TrainData)\ldefine_py_data_source(...,cls=TestData)";]
+    data_provider_py [label="dataprovider_bow.py\l----\ldef initializer(...,dictionary)\l\l@provider(init_hook=initializer)\ldef process"]
+  }
+  define_py_data_sources2 -> data_provider_py [style=dotted];
+  define_py_data_sources2 -> define_py_data_sources ;
+  define_py_data_sources -> define_py_data_source;
+}
+
